@@ -13,7 +13,7 @@ When lambda expressions and functional programming came to java, one thing they 
 BetterTry passes any possible exceptions down the line of functions, and gracefully handles them to be transformed into a failed function. This way you can continue to write your code, and handle the exception later, or even recover from it to continue writing something that actually makes sense.
 
 # Usage
-Usage of BetterTry is meant to be as straight forward and familiar as possible.
+Usage of BetterTry is meant to be as straight forward and familiar as possible. It even has all the functions of `Optional`s, including conversion to Optional methods.
 
 Everything you need will come straight from the `Try#of` function. Here you will supply the function with code to execute. Afterwards, whether the code succeeds or fails, you can continue to work with what you have, recover from an error passively, or handle any problems down the line with no disruptions to your code... if you want.
 
