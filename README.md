@@ -1,3 +1,3 @@
 # BetterTry
 
-Desc
+Description.
