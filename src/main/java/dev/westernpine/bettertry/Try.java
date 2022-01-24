@@ -28,7 +28,7 @@ public abstract class Try<V> {
      * @param <V> The result type returned from the supplier.
      * @return A new Try wrapper for the result of the given supplier.
      */
-    public static <V> Try<V> of(TrySupplier<V> supplier) {
+    public static <V> Try<V> to(TrySupplier<V> supplier) {
         Objects.requireNonNull(supplier);
         try {
             return Try.successful(supplier.get());
@@ -44,7 +44,7 @@ public abstract class Try<V> {
      * @param runnable The runnable to test.
      * @return A new Try wrapper for the result of the given runnable.
      */
-    public static Try<? extends Void> of(TryRunnable runnable) {
+    public static Try<? extends Void> to(TryRunnable runnable) {
         Objects.requireNonNull(runnable);
         try {
             runnable.run();
@@ -182,6 +182,14 @@ public abstract class Try<V> {
      * @return new composed Try.
      */
     public abstract Try<V> orElseTry(TrySupplier<V> supplier);
+
+    /**
+     * Return another try in the case of failure.
+     * Like recoverWith but without exposing the exception.
+     * @param runnable another task to try.
+     * @return new composed Try.
+     */
+    public abstract Try<?> orElseTry(TryRunnable runnable);
 
     /**
      * Gets the value V on Success or throws the cause of the failure.

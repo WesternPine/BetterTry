@@ -2,6 +2,7 @@ package dev.westernpine.bettertry;
 
 import dev.westernpine.bettertry.functions.TryConsumer;
 import dev.westernpine.bettertry.functions.TryFunction;
+import dev.westernpine.bettertry.functions.TryRunnable;
 import dev.westernpine.bettertry.functions.TrySupplier;
 
 import java.util.Objects;
@@ -104,7 +105,13 @@ class Failure<V> extends Try<V> {
     @Override
     public Try<V> orElseTry(TrySupplier<V> supplier) {
         Objects.requireNonNull(supplier);
-        return Try.of(supplier);
+        return Try.to(supplier);
+    }
+
+    @Override
+    public Try<? extends Void> orElseTry(TryRunnable runnable) {
+        Objects.requireNonNull(runnable);
+        return Try.to(runnable);
     }
 
     @Override

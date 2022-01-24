@@ -2,6 +2,7 @@ package dev.westernpine.bettertry;
 
 import dev.westernpine.bettertry.functions.TryConsumer;
 import dev.westernpine.bettertry.functions.TryFunction;
+import dev.westernpine.bettertry.functions.TryRunnable;
 import dev.westernpine.bettertry.functions.TrySupplier;
 
 import java.util.NoSuchElementException;
@@ -114,6 +115,12 @@ class Success<V> extends Try<V> {
     @Override
     public Try<V> orElseTry(TrySupplier<V> supplier) {
         Objects.requireNonNull(supplier);
+        return this;
+    }
+
+    @Override
+    public Try<V> orElseTry(TryRunnable runnable) {
+        Objects.requireNonNull(runnable);
         return this;
     }
 
