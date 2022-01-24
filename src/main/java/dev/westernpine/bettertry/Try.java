@@ -125,6 +125,20 @@ public abstract class Try<V> {
     public abstract Try<V> onFailure(TryConsumer<Throwable> consumer);
 
     /**
+     * Performs the provided action, regardless of success or failure.
+     * @param runnable action to run.
+     * @return current Try if successful, new failure try if failed.
+     */
+    public Try<V> then(TryRunnable runnable) {
+        try {
+            runnable.run();
+            return this;
+        } catch (Throwable e) {
+            return failure(e);
+        }
+    }
+
+    /**
      * If a Try is a Success and the predicate holds true, the Success is passed further.
      * Otherwise (Failure or predicate doesn't hold), pass Failure.
      * @param predicate predicate applied to the value held by Try.
