@@ -34,6 +34,12 @@ class Failure<V> extends Try<V> {
         throw new RuntimeException(throwable);
     }
 
+
+    @Override
+    public Throwable getFailureCause() {
+        return throwable;
+    }
+
     @Override
     public Try<V> onUnhandledSuccess(TryConsumer<V> consumer) throws Throwable {
         Objects.requireNonNull(consumer);

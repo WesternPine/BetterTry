@@ -35,6 +35,12 @@ class Success<V> extends Try<V> {
         return value;
     }
 
+
+    @Override
+    public Throwable getFailureCause() {
+        return null;
+    }
+
     @Override
     public Try<V> onUnhandledSuccess(TryConsumer<V> consumer) throws Throwable {
         Objects.requireNonNull(consumer);

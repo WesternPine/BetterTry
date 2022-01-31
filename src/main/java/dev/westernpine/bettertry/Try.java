@@ -95,6 +95,12 @@ public abstract class Try<V> {
     public abstract V getUnchecked();
 
     /**
+     * Get the cause of the failure if any.
+     * @return The cause of the failure if any, otherwise null;
+     */
+    public abstract Throwable getFailureCause();
+
+    /**
      * Performs the provided action, when successful.
      * @param consumer action to run.
      * @return current Try.
